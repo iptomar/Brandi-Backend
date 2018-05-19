@@ -79,3 +79,12 @@ router.post('/clientes/:id', (req, res) =>{
 router.post('/apagar/', (req, res) =>{	
 	execSQLQuery('DELETE FROM Cliente WHERE id=' + req.query.id, res)
 })
+
+
+// inserir objectos na base dados
+router.post('/adicionar', (req, res) =>{
+	const designacao = req.query.designacao
+    const tipologia = req.query.tipologia
+	const localizacao = req.query.localizacao
+	execSQLQuery(`INSERT INTO designacao_objecto(Designacao, Tipologia, Localizacao) VALUES('${designacao}','${tipologia}','${localizacao}')`, res);
+})
