@@ -6,7 +6,9 @@ require('./models/db').sequelize.sync().then(
 
         const user = require('./controllers/user');
         const server = require("http").createServer();
-
+        //var cors = require('cors');
+        var mysql = require('mysql');
+        //app.use(cors())
 
         app.use(bodyParser.urlencoded({
             extended: true
@@ -46,7 +48,7 @@ require('./models/db').sequelize.sync().then(
         require("./router")(app);
 
         server.on("request", app);
-        server.listen(3000, () => console.log('Example app listening on port 3000!'))
+        server.listen(3000, () => console.log('PSI - app listening'))
     },
     error => {
         console.log("connection refused", error);

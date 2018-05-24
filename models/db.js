@@ -37,9 +37,9 @@ const operatorsAliases = {
     $col: Sequelize.Op.col
 };
 
-const sequelize = new Sequelize('db', '', '', {
+const sequelize = new Sequelize('db6', 'leitor', 'nuno', {
     host: 'localhost',
-    dialect: 'sqlite',
+    dialect: 'mysql',
     operatorsAliases: operatorsAliases,
     logging:  false,
     pool: {
@@ -49,13 +49,16 @@ const sequelize = new Sequelize('db', '', '', {
         idle: 10000
     },
     // SQLite only
-    storage: 'db.db',
+    //storage: 'db.db',
     // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
 });
 
 const db = {
     'User': require('./user')(sequelize, Sequelize),
-    'Role': require('./role')(sequelize, Sequelize)
+    'Role': require('./role')(sequelize, Sequelize),
+    'Clientes': require('./client')(sequelize, Sequelize),
+    'Designacao_Objecto':  require('./DesObjeto')(sequelize, Sequelize)
+
 }
 
 Object.keys(db).forEach(modelName => {
