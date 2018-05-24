@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const user = require('./controllers/user');
 const http = require("http");
-const mysql = require('mysql');
 var Router = require('./router')
 
 var Server = function(port) {

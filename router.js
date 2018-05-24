@@ -7,7 +7,7 @@ var Router = function(server) {
 Router.prototype.start = function() {
   this.server.app
     .post('/registar', controllers.user.register)
-    .post('/login', this.permission('tecnico'), controllers.user.login)
+    .post('/login', controllers.user.login)
     .get('/user', controllers.user.getClient)
     .post('/adicionar', this.permission('gestor'), controllers.DesObjeto.adicionar)
     .get('/listar', this.permission('tecnico'), controllers.DesObjeto.listar)
