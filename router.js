@@ -1,13 +1,34 @@
-module.exports = (app) => {
-    var controllers = require("./controllers/index");
+var controllers = require("./controllers/index");
 
-    app
-        .post('/registar', require('permission')(['gestor']), controllers.user.register)
-        .post('/login', controllers.user.login)
-        .get('/user', controllers.user.getClient)
-        .post('/adicionar', require('permission')(['gestor']), controllers.DesObjeto.adicionar)
-        .get('/listar', controllers.DesObjeto.listar)
-        .post('/registar/cliente', require('permission')(['gestor']), controllers.client.register)
-        .put('/editar/:ClienteId', require('permission')(['gestor']), controllers.client.updateClient)
-    // .post('/adicionar'
+var Router = function(server) {
+  this.server = server;
 }
+
+Router.prototype.start = function() {
+  this.server.app
+    .post('/registar', controllers.user.register)
+    .post('/login', this.permission('tecnico'), controllers.user.login)
+    .get('/user', controllers.user.getClient)
+    .post('/adicionar', this.permission('gestor'), controllers.DesObjeto.adicionar)
+    .get('/listar', this.permission('tecnico'), controllers.DesObjeto.listar)
+    .post('/registar/cliente', controllers.client.register)
+    .put('/editar/:ClienteId', controllers.client.updateClient)
+}
+
+Router.prototype.permission = function(role) {
+  //ir a base de dados
+  var role_basedados = 'gestor';
+
+  return function(req, res, next) {
+    if(role_basedados === role) {
+      next();
+    } else {
+      return res.status(401).json({
+        'result': 'nok',
+        'message': 'access denied'
+      });
+    }
+  };
+};
+
+module.exports = Router;
