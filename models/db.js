@@ -37,7 +37,7 @@ const operatorsAliases = {
     $col: Sequelize.Op.col
 };
 
-const sequelize = new Sequelize('db6', 'leitor', 'nuno', {
+const sequelize = new Sequelize(process.env.DB || 'db6', process.env.DBUSER || 'leitor', process.env.DBPASSWORD || 'nuno', {
     host: 'localhost',
     dialect: 'mysql',
     operatorsAliases: operatorsAliases,
