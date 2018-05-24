@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "test": "./node_modules/mocha/bin/mocha -R spec --timeout 10000 --exit"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -14,5 +14,10 @@
     "permission": "^1.1.0",
     "sequelize": "^4.37.7",
     "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*",
+    "supertest": "*"
   }
 }
