@@ -57,8 +57,7 @@ const db = {
     'User': require('./user')(sequelize, Sequelize),
     'Role': require('./role')(sequelize, Sequelize),
     'Clientes': require('./client')(sequelize, Sequelize),
-    'Designacao_Objecto':  require('./DesObjeto')(sequelize, Sequelize)
-
+    'DesignacaoObjecto': require('./DesObjeto')(sequelize, Sequelize)
 }
 
 Object.keys(db).forEach(modelName => {
