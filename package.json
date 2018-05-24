@@ -1,22 +1,18 @@
 {
-  "name": "psiteamc",
+  "name": "psi",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iptomar/psiTeamC.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iptomar/psiTeamC/issues"
-  },
-  "homepage": "https://github.com/iptomar/psiTeamC#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "permission": "^1.1.0",
+    "sequelize": "^4.37.7",
+    "sqlite3": "^4.0.0"
   }
 }
