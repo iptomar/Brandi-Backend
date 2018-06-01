@@ -1,8 +1,8 @@
-DROP DATABASE Brandi_Ficha_Tecnica;
+DROP DATABASE Brandi_BD;
 
-CREATE DATABASE IF NOT EXISTS Brandi_Ficha_Tecnica;
+CREATE DATABASE IF NOT EXISTS Brandi_BD;
 
-USE Brandi_Ficha_Tecnica;
+USE Brandi_BD;
 
 /* Opportunities Management Tables (Team A) */
 
@@ -44,7 +44,7 @@ CREATE TABLE Eventos (
     Data_Evento DATE NULL,
     Tipo NVARCHAR(50) NULL,
     ID_Pedido INT UNSIGNED NOT NULL,
-    CONSTRAINT FK_ID_Pedido FOREIGN KEY (ID_Coordenador) REFERENCES Coordenador(ID_Coordenador) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT FK_ID_Pedido FOREIGN KEY (ID_Pedido) REFERENCES Pedidos_Clientes(ID_Pedido) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Analises_Preliminares (
