@@ -4,6 +4,68 @@ CREATE DATABASE IF NOT EXISTS Brandi_Ficha_Tecnica;
 
 USE Brandi_Ficha_Tecnica;
 
+/* Opportunities Management Tables (Team A) */
+
+CREATE TABLE Clientes (
+    ID_Cliente INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Nome NVARCHAR(100) NOT NULL,
+    NIF NVARCHAR(9) NULL,
+    Morada NVARCHAR(50) NULL,
+    Email NVARCHAR(50) NULL,
+    Telemovel NVARCHAR(9) NULL
+);
+
+CREATE TABLE Pedidos_Clientes (
+    ID_Pedido INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Titulo NVARCHAR(100) NOT NULL,
+    Fotografia NVARCHAR(50) NULL,
+    Data_Realizacao_Pedido DATE NULL,
+    Descricao NVARCHAR(255) NULL,
+    ID_Cliente INT UNSIGNED NOT NULL,
+    CONSTRAINT FK_ID_Cliente FOREIGN KEY (ID_Cliente) REFERENCES Clientes(ID_Cliente) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Propostas (
+    ID_Proposta INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Aceitação_Proposta TINYINT(1) NOT NULL,
+    Justificacao_Recusa NVARCHAR(255) NULL,
+    Descricao NVARCHAR(255) NULL,
+    Data_Elaboracao_Proposta DATE NULL,
+    Data_Envio_Proposta DATE NULL,
+    ID_Pedido INT UNSIGNED NOT NULL,
+    ID_Coordenador INT UNSIGNED NOT NULL,
+    CONSTRAINT FK_ID_Pedido FOREIGN KEY (ID_Pedido) REFERENCES Pedidos_Clientes(ID_Pedido) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT FK_ID_Coordenador FOREIGN KEY (ID_Coordenador) REFERENCES Coordenador(ID_Coordenador) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Eventos (
+    ID_Evento INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Descricao NVARCHAR(255) NULL,
+    Data_Evento DATE NULL,
+    Tipo NVARCHAR(50) NULL,
+    ID_Pedido INT UNSIGNED NOT NULL,
+    CONSTRAINT FK_ID_Pedido FOREIGN KEY (ID_Coordenador) REFERENCES Coordenador(ID_Coordenador) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Analises_Preliminares (
+    ID_Analise INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Descricao NVARCHAR(255) NULL,
+    Data_Realizacao DATE NULL,
+    Local_Realizacao NVARCHAR(50) NULL,
+    Inicio_Analise TIME NULL,
+    Fim_Analise TIME NULL,
+    Distancia_Deslocacao INT NULL,
+    Outras_Despesas NVARCHAR(255) NULL,
+    ID_Objecto INT UNSIGNED NOT NULL,
+    CONSTRAINT FK_ID_Objecto FOREIGN KEY (ID_Objecto) REFERENCES Designacao_Objecto(ID_Objecto) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Coordenador (
+    ID_Coordenador INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT
+);
+
+/* ######################################## */
+
 CREATE TABLE Pessoa (
 	ID_Pessoa INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nome NVARCHAR(100) NOT NULL,
@@ -49,10 +111,16 @@ CREATE TABLE Designacao_Objecto (
     ID_Dono_Obra INT UNSIGNED NOT NULL,
     ID_Proprietario INT UNSIGNED NOT NULL,
     ID_Mecenas INT UNSIGNED NOT NULL,
+    /* Connection between Team C DB and Team A DB */
+    ID_Pedido INT UNSIGNED NOT NULL,
+    /* ########################################## */
     CONSTRAINT FK_ID_Dono_Obra FOREIGN KEY (ID_Dono_Obra) REFERENCES Pessoa(ID_Pessoa) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT FK_ID_Proprietario FOREIGN KEY (ID_Proprietario) REFERENCES Pessoa(ID_Pessoa) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT FK_ID_Mecenas FOREIGN KEY (ID_Mecenas) REFERENCES Pessoa(ID_Pessoa) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT FK_ID_Sub_Categoria FOREIGN KEY (ID_Sub_Categoria) REFERENCES Sub_Categorias(ID_Sub_Categoria) ON UPDATE CASCADE ON DELETE CASCADE
+    CONSTRAINT FK_ID_Sub_Categoria FOREIGN KEY (ID_Sub_Categoria) REFERENCES Sub_Categorias(ID_Sub_Categoria) ON UPDATE CASCADE ON DELETE CASCADE,
+    /* Connection between Team C DB and Team A DB */
+    CONSTRAINT FK_ID_Pedido FOREIGN KEY (ID_Pedido) REFERENCES Pedidos_Clientes(ID_Pedido) ON UPDATE CASCADE ON DELETE CASCADE
+    /* ########################################## */
 );
 
 CREATE TABLE Fotos (
