@@ -1,5 +1,5 @@
 module.exports={
     "user":require("./user"),
     "client":require("./client"),
-    "DesObjeto":require("./DesObjeto"),
+    "designacao_objetos":require("./designacao_objetos"),
 }
