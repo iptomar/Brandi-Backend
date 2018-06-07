@@ -62,6 +62,11 @@ CREATE TABLE Analises_Preliminares (
 
 CREATE TABLE Coordenador (
     ID_Coordenador INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT
+    Nome NVARCHAR(100) NOT NULL,
+    NIF  NVARCHAR(9) NOT NULL,
+    Telemovel NVARCHAR(9) NULL
+    E_Mail  NVARCHAR(50) NULL
+    Fotografia NVARCHAR(50) NULL
 );
 
 /* ######################################## */
