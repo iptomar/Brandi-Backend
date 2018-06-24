@@ -1,7 +1,7 @@
 var db = require('../../models/db')
 
 exports.adicionarProposta = (req, res) => {
-    db.Clientes.create({
+    db.proposta_metodologia_intervencao.create({
         Estrutura: req.body.Estrutura,
         Estrutura_Recurso: req.body.Estrutura_Recurso,
         Superficie: req.body.Superficie,
@@ -15,7 +15,7 @@ exports.adicionarProposta = (req, res) => {
 }
 
 exports.updateProposta = (req, res, next) => {
-    db.Clientes.update({
+    db.proposta_metodologia_intervencao.update({
         Estrutura: req.body.Estrutura,
         Estrutura_Recurso: req.body.Estrutura_Recurso,
         Superficie: req.body.Superficie,

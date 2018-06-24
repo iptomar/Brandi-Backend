@@ -1,12 +1,12 @@
 var db = require('../../models/db')
 
-exports.register = (req, res) => {
+exports.adicionarObjGerUsa = (req, res) => {
     db.objectivos_gerais_usados.create({
         //SO TEM PK
     });
 }
 
-exports.updateClient = (req, res, next) => {
+exports.updateObjGerUsa = (req, res, next) => {
     db.objectivos_gerais_usados.update({
         //SO TEM PK
     }, {
