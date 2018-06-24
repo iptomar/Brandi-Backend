@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarDescTec = (req, res) => {
     db.descricao_tecnica.create({

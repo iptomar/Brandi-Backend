@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarCategorias = (req, res) => {
     db.sub_categorias.create({

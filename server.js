@@ -68,17 +68,26 @@ Server.prototype.routes = function () {
 Server.prototype.permission = function (role) {
   return function (req, res, next) {
     //console.log(req.headers.authorization)
-    var role_basedados = String(req.user.Role.nome);
-    if (role.indexOf(role_basedados) > -1 || role_basedados === role) {
-      next();
-    } else {
+    
+    if (req.user == null || req.user == "") {
       return res.status(401).json({
-        'Result': 401,
-        'Message': 'Access Denied',
-        'Role Required': role,
-        'Your Role': role_basedados
-      });
+          'Result': 401,
+          'Message': 'You are not logged in'
+        });
+    } else {
+      var role_basedados = String(req.user.Role.nome);
+      if (role.indexOf(role_basedados) > -1 || role_basedados === role) {
+        next();
+      } else {
+        return res.status(401).json({
+          'Result': 401,
+          'Message': 'Access Denied',
+          'Role Required': role,
+          'Your Role': role_basedados
+        });
+      }
     }
+
   };
 };
 

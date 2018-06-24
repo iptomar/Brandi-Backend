@@ -1,14 +1,13 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('proposta_metodologia_intervencao', {
+  var propostaM = sequelize.define('proposta_metodologia_intervencao', {
     ID_Objecto: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
       references: {
         model: 'designacao_objecto',
-        key: 'id_objecto'
+        key: 'ID_Objecto'
       }
     },
     Estrutura: {
@@ -49,5 +48,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'proposta_metodologia_intervencao'
-  });
+    });
+  propostaM.associate = (models) => {
+
+  }
+  return propostaM;
 };

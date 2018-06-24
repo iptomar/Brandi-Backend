@@ -1,11 +1,11 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('categorias', {
+  var categorias = sequelize.define('categorias', {
     ID_Categoria: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     Super_Categoria: {
       type: DataTypes.STRING(50),
@@ -19,5 +19,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'categorias'
-  });
+    });
+  categorias.associate = (models) => {
+    
+  }
+  return categorias;
 };

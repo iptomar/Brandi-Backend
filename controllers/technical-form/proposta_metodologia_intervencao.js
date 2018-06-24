@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarProposta = (req, res) => {
     db.Clientes.create({

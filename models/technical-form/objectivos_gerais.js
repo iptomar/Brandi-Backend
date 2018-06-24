@@ -1,7 +1,6 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('objectivos_gerais', {
+  var objetivos = sequelize.define('objectivos_gerais', {
     ID_Objectivo: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
@@ -13,5 +12,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'objectivos_gerais'
-  });
+    });
+  objetivos.associate = (models) => {
+
+  }
+  return objetivos;
 };

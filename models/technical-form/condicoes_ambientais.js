@@ -1,14 +1,14 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('condicoes_ambientais', {
+  var condicoes = sequelize.define('condicoes_ambientais', {
     ID_Objecto: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
       references: {
         model: 'designacao_objecto',
-        key: 'id_objecto'
+        key: 'ID_Objecto'
       }
     },
     Descricao: {
@@ -37,5 +37,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'condicoes_ambientais'
-  });
+    });
+  condicoes.associate = (models) => {
+
+  }
+  return condicoes;
 };

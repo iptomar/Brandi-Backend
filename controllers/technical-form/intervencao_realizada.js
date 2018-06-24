@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarInterReal = (req, res) => {
     db.intervencao_realizada.create({

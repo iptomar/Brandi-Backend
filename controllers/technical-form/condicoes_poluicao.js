@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarCondPolu = (req, res) => {
     db.condicoes_poluicao.create({

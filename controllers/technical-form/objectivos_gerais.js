@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarObjGer = (req, res) => {
     db.objectivos_gerais.create({

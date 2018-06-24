@@ -1,14 +1,14 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('conjuntos', {
+  var conjuntos = sequelize.define('conjuntos', {
     ID_Objecto: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
       references: {
-        model: 'designacao_objecto',
-        key: 'id_objecto'
+        model: 'designacao_objetos',
+        key: 'id'
       }
     },
     Tipo_Conjunto: {
@@ -37,5 +37,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'conjuntos'
-  });
+    });
+  conjuntos.associate = (models) => {
+
+  }
+  return conjuntos
 };

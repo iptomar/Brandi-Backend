@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarVontade = (req, res) => {
     db.vontade_intervencao_proprietario.create({

@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarCondAmb = (req, res) => {
     db.condicoes_ambientais.create({

@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarMembro = (req, res) => {
     db.membro_equipa.create({

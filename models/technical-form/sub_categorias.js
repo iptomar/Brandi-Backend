@@ -1,14 +1,13 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('sub_categorias', {
+  var subcat = sequelize.define('sub_categorias', {
     ID_Categoria: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
       references: {
         model: 'categorias',
-        key: 'id_categoria'
+        key: 'ID_Categoria'
       }
     },
     ID_Sub_Categoria: {
@@ -22,5 +21,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'sub_categorias'
-  });
+    });
+  subcat.associate = (models) => {
+
+  }
+  return subcat;
 };

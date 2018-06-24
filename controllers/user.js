@@ -67,7 +67,7 @@ exports.validateToken = (token) => {
         });
         //req.headers.authorization = token;
 
-        console.log(token);
+        //console.log(token);
     });
 };
 
@@ -76,6 +76,11 @@ exports.getClient = (req, res) => {
         //console.log(req.user.email)
         res.status(200).json({
             "client": req.user
+        });
+    } else {
+        res.status(401).json({
+            "Result": 401,
+            "Message": "You are not logged in"
         });
     }
 };

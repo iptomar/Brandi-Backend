@@ -1,9 +1,10 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarDocu = (req, res) => {
     db.documentacao.create({
         Tipo_Documentacao: req.body.Tipo_Documentacao,
         Nome: req.body.Nome
+    });
 }
 
 exports.updateDocu = (req, res, next) => {
@@ -16,5 +17,5 @@ exports.updateDocu = (req, res, next) => {
         (rowsUpdated) => {
             res.json(rowsUpdated)
         }
-    ).catch(next)
+    ).catch(next);
 }

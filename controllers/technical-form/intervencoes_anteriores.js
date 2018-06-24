@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarInterAnt = (req, res) => {
     db.intervencoes_anteriores.create({

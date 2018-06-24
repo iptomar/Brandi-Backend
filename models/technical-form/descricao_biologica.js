@@ -1,14 +1,14 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('descricao_biologica', {
+  var descricaob = sequelize.define('descricao_biologica', {
     ID_Objecto: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
       references: {
-        model: 'designacao_objecto',
-        key: 'id_objecto'
+        model: 'designacao_objetos',
+        key: 'id'
       }
     },
     Estrutura_Suporte: {
@@ -25,5 +25,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'descricao_biologica'
-  });
+    });
+  descricaob.associate = (models) => {
+
+  }
+  return descricaob;
 };

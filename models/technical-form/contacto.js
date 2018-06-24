@@ -1,11 +1,11 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('contacto', {
+  var contacto = sequelize.define('contacto', {
     ID_Contacto: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     ID_Pessoa: {
       type: DataTypes.INTEGER(10).UNSIGNED,
@@ -22,5 +22,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'contacto'
-  });
+    });
+  contacto.associate = (models) => {
+
+  }
+  return contacto
 };

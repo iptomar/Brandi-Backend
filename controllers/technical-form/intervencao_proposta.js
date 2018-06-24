@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarInter = (req, res) => {
     db.intervencao_proposta.create({

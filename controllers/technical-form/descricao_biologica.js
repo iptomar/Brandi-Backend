@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarDescBio = (req, res) => {
     db.descricao_biologica.create({

@@ -1,11 +1,11 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('membro_equipa', {
+  var membro = sequelize.define('membro_equipa', {
     ID_Membro: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     Funcao: {
       type: DataTypes.STRING(50),
@@ -17,5 +17,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'membro_equipa'
-  });
+    });
+  membro.associate = (models) => {
+
+  }
+  return membro;
 };

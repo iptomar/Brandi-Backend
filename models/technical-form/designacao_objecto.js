@@ -1,11 +1,11 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('designacao_objecto', {
+  var designacaoO = sequelize.define('designacao_objecto', {
     ID_Objecto: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true,
     },
     Designacao: {
       type: DataTypes.STRING(100),
@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'sub_categorias',
-        key: 'id_sub_categoria'
+        key: 'ID_Sub_Categoria'
       }
     },
     Tipologia: {
@@ -60,7 +60,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'pessoa',
-        key: 'id_pessoa'
+        key: 'ID_Pessoa'
       }
     },
     ID_Proprietario: {
@@ -68,7 +68,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'pessoa',
-        key: 'id_pessoa'
+        key: 'ID_Pessoa'
       }
     },
     ID_Mecenas: {
@@ -76,10 +76,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       references: {
         model: 'pessoa',
-        key: 'id_pessoa'
+        key: 'ID_Pessoa'
       }
     }
   }, {
     tableName: 'designacao_objecto'
-  });
+    });
+  designacaoO.associate = (models) => {
+
+  }
+  return designacaoO;
 };

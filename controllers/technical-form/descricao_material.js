@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarDescMat = (req, res) => {
     db.descricao_material.create({

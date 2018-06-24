@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarDesObj = (req, res) => {
     db.designacao_objecto.create({

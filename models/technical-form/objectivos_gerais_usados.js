@@ -1,14 +1,13 @@
-/* jshint indent: 2 */
-
+'use strict';
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('objectivos_gerais_usados', {
+  var objetivoG = sequelize.define('objectivos_gerais_usados', {
     ID_Objectivo: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       primaryKey: true,
       references: {
         model: 'objectivos_gerais',
-        key: 'id_objectivo'
+        key: 'ID_Objectivo'
       }
     },
     ID_Objecto: {
@@ -17,10 +16,14 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       references: {
         model: 'designacao_objecto',
-        key: 'id_objecto'
+        key: 'ID_Objecto'
       }
     }
   }, {
     tableName: 'objectivos_gerais_usados'
-  });
+    });
+  objetivoG.associate = (models) => {
+
+  }
+  return objetivoG;
 };

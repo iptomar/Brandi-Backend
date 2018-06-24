@@ -1,4 +1,4 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
 exports.adicionarTabela = (req, res) => {
     db.tabela_exames_analises.create({
