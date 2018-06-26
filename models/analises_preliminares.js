@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('analises_preliminares', {
+    var analises_preliminares = sequelize.define('analises_preliminares', {
         Descricao_Analise: {
             type: DataTypes.STRING(255),
             allowNull: false
@@ -34,7 +34,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING(255),
             allowNull: false
         }
-    }, {
-            tableName: 'analises_preliminares'
-        });
+    });
+
+    analises_preliminares.associate = (models) => {
+        //models.Designacao_Objeto.belongsTo(models.Role)
+    }
+    return analises_preliminares;
 };

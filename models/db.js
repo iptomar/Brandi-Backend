@@ -37,7 +37,7 @@ const operatorsAliases = {
     $col: Sequelize.Op.col
 };
 
-const sequelize = new Sequelize(process.env.DB || "db6", process.env.DBUSER || "root", process.env.DBPASSWORD || "", {
+const sequelize = new Sequelize(process.env.DB || "db6", process.env.DBUSER || "leitor", process.env.DBPASSWORD || "123qwe#", {
     host: "localhost",
     dialect: "mysql",
     operatorsAliases: operatorsAliases,
@@ -57,8 +57,11 @@ const db = {
     "User": require("./user")(sequelize, Sequelize),
     "Role": require("./role")(sequelize, Sequelize),
     "Clientes": require("./client")(sequelize, Sequelize),
-    "designacao_objetos": require("./designacao_objetos")(sequelize, Sequelize),
-    "Role": require("./role")(sequelize, Sequelize)
+    "Pedidos": require("./pedidos_clientes")(sequelize, Sequelize),
+    "Eventos": require("./eventos")(sequelize, Sequelize),
+    "Propostas": require("./propostas")(sequelize, Sequelize),
+    "Designacao_objetos": require("./designacao_objetos")(sequelize, Sequelize),
+    "Analises_preliminares": require("./analises_preliminares")(sequelize, Sequelize)
 };
 
 Object.keys(db).forEach(modelName => {

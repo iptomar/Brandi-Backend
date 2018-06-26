@@ -19,10 +19,12 @@ exports.register = (req, res) => {
 };
 
 exports.login = (req, res) => {
+    console.log(req.query.username)
+    console.log(req.query.password)
     db.User.findOne({
         where: {
-            email: req.body.email,
-            password: SHA256(req.body.password)
+            email: req.query.username,
+            password: SHA256(req.query.password)
         },
         include: [{
             model: db.Role

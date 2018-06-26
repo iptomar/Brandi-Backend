@@ -1,5 +1,7 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
+
     var designacao_objetos = sequelize.define('designacao_objetos', {
         designacao: {
             type: DataTypes.STRING,
@@ -14,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     });
+
     designacao_objetos.associate = (models) => {
         //models.Designacao_Objeto.belongsTo(models.Role)
     }

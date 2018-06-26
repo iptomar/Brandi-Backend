@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const user = require('./controllers/user');
 const http = require("http");
 var controllers = require("./controllers/index");
+var multer = require('multer');
 
 var Server = function () {
   this.app = express();
@@ -60,10 +61,30 @@ Server.prototype.routes = function () {
     .get("/user", controllers.user.getClient)
     .post("/adicionar", this.permission(["Tecnico", "Gestor"]), controllers.designacao_objetos.adicionar)
     .get("/listar", this.permission("DiretorTecnico"), controllers.designacao_objetos.listar)
-    .post("/registar/cliente", controllers.client.register)
-    .put("/editar/:id", controllers.client.updateClient)
-    .get("/roles", this.permission("Gestor"), controllers.role.list);
-};
+    .get("/roles", this.permission("Gestor"), controllers.role.list)
+
+    .post("/cliente", this.permission("Gestor"), controllers.client.cliente)
+    .post("/listarclientes", this.permission("Gestor"), controllers.client.listar) // listar de clientes
+    .post("/editarcliente", this.permission("Gestor"), controllers.client.editarcliente) // editar um cliente
+    .post("/adicionarcliente", this.permission("Gestor"), controllers.client.adicionarcliente) // adicionar um cliente
+    .post("/eliminarcliente", this.permission("Gestor"), controllers.client.eliminarcliente) // eliminar um cliente
+
+    .post("/listarpedidos", this.permission("Gestor"), controllers.pedidos_clientes.listarPedidos) // listar de pedidos
+    .post("/pedido", this.permission("Gestor"), controllers.pedidos_clientes.pedido) // listar um pedido
+    .post("/eliminarpedido", this.permission("Gestor"), controllers.pedidos_clientes.EliminarPedido) // eliminar um pedidos
+    .post("/editarpedido", this.permission("Gestor"), controllers.pedidos_clientes.editarpedido) // editar um cliente
+    .post("/adicionarpedido", this.permission("Gestor"), controllers.pedidos_clientes.adicionarpedido)  // adicionar pedido      
+
+    .post("/listareventos",this.permission("Gestor"), controllers.eventos.listareventos) // listar eventos
+    .post("/evento", this.permission("Gestor"), controllers.eventos.evento) // listar um pedido
+    .post("/eliminarevento", this.permission("Gestor"), controllers.eventos.eliminarevento) // eliminar um pedidos
+    .post("/editarevento", this.permission("Gestor"), controllers.eventos.editarevento) // editar um cliente
+    .post("/adicionarevento", this.permission("Gestor"), controllers.eventos.adicionarevento)  // adicionar pedido      
+
+    //.post("/listarpropostas",  controllers.propostas.listarpropostas) // listar eventos
+  };
+
+
 
 Server.prototype.permission = function (role) {
   return function (req, res, next) {

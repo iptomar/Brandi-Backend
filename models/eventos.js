@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('eventos', {
+    var eventos =  sequelize.define('eventos', {
         Descricao: {
             type: DataTypes.STRING(255),
             allowNull: false
@@ -13,8 +13,9 @@ module.exports = function (sequelize, DataTypes) {
         Tipo: {
             type: DataTypes.STRING(255),
             allowNull: false
+        }   });    
+        eventos.associate = (models) => {
+            //models.Designacao_Objeto.belongsTo(models.Role)
         }
-    }, {
-            tableName: 'eventos'
-        });
+        return eventos;
 };

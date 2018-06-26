@@ -1,12 +1,7 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('propostas', {
-        ID_Proposta: {
-            type: DataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-            primaryKey: true
-        },
+    var propostas = sequelize.define('propostas', {
         Aceitação_Proposta: {
             type: DataTypes.INTEGER(1),
             allowNull: false
@@ -20,30 +15,33 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         Data_Elaboracao_Proposta: {
-            type: DataType.DATEONLY,
+            type: DataTypes.DATEONLY,
             allowNull: false
         },
         Data_Envio_Proposta: {
-            type: DataType.DATEONLY,
+            type: DataTypes.DATEONLY,
             allowNull: false
         },
         ID_Pedido: {
-            type: DataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
+            type: DataTypes.INTEGER(11),
+            allowNull: true,
             references: {
                 model: 'pedidos_clientes',
-                key: 'id_pedido'
+                key: 'id'
             }
         },
         ID_Coordenador: {
-            type: DataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
+            type: DataTypes.INTEGER(11),
+            allowNull: true,
             references: {
-                model: 'coordenadores',
-                key: 'id_coordenador'
+                model: 'users',
+                key: 'id'
             }
         }
-    }, {
-            tableName: 'propostas'
-        });
+    });
+
+    propostas.associate = (models) => {
+        // models.propostas.belongsTo(models.Role)
+    }
+    return propostas;
 };

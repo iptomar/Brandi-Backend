@@ -1,27 +1,60 @@
 var db = require('../models/db')
 
-exports.register = (req, res) => {
+exports.cliente = (req, res) => {
+    db.Clientes.find({ where: { id: req.query.id } }).then(
+        Clientes => res.status(200).json({
+            "cliente": Clientes
+        }),
+        error => res = status(500).send(error.message)
+    )
+    console.log("detalhes do cliente" + req.query.id)
+};
+
+exports.listar = (req, res) => {    
+    db.Clientes.findAll().then(
+        Clientes => res.status(200).json({
+            "clientes": Clientes
+        }),
+        error => res = status(500).send(error.message)
+    )
+    console.log("Lista enviada")
+};
+
+exports.adicionarcliente = (req, res) => {
+
     db.Clientes.create({
-        email: req.body.email,
-        nome: req.body.nome,
-        nif: req.body.nif,
-        morada: req.body.morada,
-        contacto: req.body.contacto
-    });
+        email: req.query.email,
+        nome: req.query.nome,
+        nif: req.query.nif,
+        morada: req.query.morada,
+        contacto: req.query.contacto
+    }
+    )
+    console.log("Cliente adicionado")
 }
 
-exports.updateClient = (req, res, next) => {
+exports.eliminarcliente = (req, res, next) => {
+
+    db.Clientes.destroy({
+        where: { id: req.query.id }        
+    })
+    console.log("Cliente apagado")
+}
+
+exports.editarcliente = (req, res, next) => {
+
     db.Clientes.update({
-        email: req.body.email,
-        nome: req.body.nome,
-        nif: req.body.nif,
-        morada: req.body.morada,
-        contacto: req.body.contacto
+        email: req.query.email,
+        nome: req.query.nome,
+        nif: req.query.nif,
+        morada: req.query.morada,
+        contacto: req.query.contacto
     }, {
-        where: req.params.ClienteId
-    }).then(
-        (rowsUpdated) => {
-            res.json(rowsUpdated)
-        }
-    ).catch(next)
+            where: { id: req.query.id }
+        }).then(
+            (rowsUpdated) => {
+                res.json(rowsUpdated)
+            }
+        ).catch(next)
+    console.log("Cliente editado")
 }
