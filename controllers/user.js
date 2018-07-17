@@ -19,10 +19,11 @@ exports.register = (req, res) => {
 };
 
 exports.login = (req, res) => {
+    
     db.User.findOne({
         where: {
-            email: req.body.email,
-            password: SHA256(req.body.password)
+            email: req.query.username,
+            password: SHA256(req.query.password)
         },
         include: [{
             model: db.Role
@@ -37,7 +38,8 @@ exports.login = (req, res) => {
                 let options = {
                     expiresIn: "3h"
                 };
-                var token = jwt.sign(payload, 'psi2yj0rxmyutj', options);
+                var token = jwt.sign(payload, 'psi2yj0rxmyutj', options);  
+                //console.log(token)
                 res.status(200).json({
                     "token": token
                 });
@@ -67,7 +69,7 @@ exports.validateToken = (token) => {
         });
         //req.headers.authorization = token;
 
-        //console.log(token);
+        
     });
 };
 

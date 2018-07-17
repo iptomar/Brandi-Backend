@@ -58,19 +58,36 @@ Server.prototype.routes = function () {
     .post("/registar", this.permission("Gestor"), controllers.user.register)
     .post("/login", controllers.user.login)
     .get("/user", controllers.user.getClient)
-    .post("/adicionar", this.permission(["Tecnico", "Gestor"]), controllers.designacao_objetos.adicionar)
-    .get("/listar", this.permission("DiretorTecnico"), controllers.designacao_objetos.listar)
-    .post("/registar/cliente", controllers.client.register)
-    .put("/editar/:id", controllers.client.updateClient)
+   // .post("/adicionar", this.permission(["Tecnico", "Gestor"]), controllers.designacao_objetos.adicionar)
+   // .get("/listar", this.permission("DiretorTecnico"), controllers.designacao_objetos.listar)
     .get("/roles", this.permission("Gestor"), controllers.role.list)
-    .post("/gestao-oportunidades/analises_preliminares/adicionarAnalPrem", controllers.analises_preliminares.adicionarAnalPrem)
-    .put("/gestao-oportunidades/analises_preliminares/updateAnalPrem/:AnalPremId", controllers.analises_preliminares.updateAnalPrem)
-    .post("/gestao-oportunidades/eventos/adicionarEventos", controllers.eventos.adicionarEventos)
-    .put("/gestao-oportunidades/eventos/updateEventos/:EventosId", controllers.eventos.updateEventos)
-    .post("/gestao-oportunidades/pedidos_clientes/adicionarPedClientes", controllers.pedidos_clientes.adicionarPedClientes)
-    .put("/gestao-oportunidades/pedidos_clientes/updatePedClientes/:PedClientesId", controllers.pedidos_clientes.updatePedClientes)
-    .post("/gestao-oportunidades/propostas/adicionarPropostas", controllers.propostas.adicionarPropostas)
-    .put("/gestao-oportunidades/propostas/updatePropostas/:PropostasId", controllers.propostas.updatePropostas)
+
+    .post("/cliente", this.permission("Gestor"), controllers.client.cliente)
+    .post("/listarclientes", this.permission("Gestor"), controllers.client.listar) // listar de clientes
+    .post("/editarcliente", this.permission("Gestor"), controllers.client.editarcliente) // editar um cliente
+    .post("/adicionarcliente", this.permission("Gestor"), controllers.client.adicionarcliente) // adicionar um cliente
+    .post("/eliminarcliente", this.permission("Gestor"), controllers.client.eliminarcliente) // eliminar um cliente
+
+    .post("/listarpedidos", this.permission("Gestor"), controllers.pedidos_clientes.listarPedidos) // listar de pedidos
+    .post("/pedido", this.permission("Gestor"), controllers.pedidos_clientes.pedido) // listar um pedido
+    .post("/eliminarpedido", this.permission("Gestor"), controllers.pedidos_clientes.EliminarPedido) // eliminar um pedidos
+    .post("/editarpedido", this.permission("Gestor"), controllers.pedidos_clientes.editarpedido) // editar um cliente
+    .post("/adicionarpedido", this.permission("Gestor"), controllers.pedidos_clientes.adicionarpedido)  // adicionar pedido      
+
+    .post("/listareventos", this.permission("Gestor"), controllers.eventos.listareventos) // listar eventos
+    .post("/evento", this.permission("Gestor"), controllers.eventos.evento) // listar um evento
+    .post("/eliminarevento", this.permission("Gestor"), controllers.eventos.eliminarevento) // eliminar um evento
+    .post("/editarevento", this.permission("Gestor"), controllers.eventos.editarevento) // editar um evento
+    .post("/adicionarevento", this.permission("Gestor"), controllers.eventos.adicionarevento)  // adicionar evento
+
+    .post("/listar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.listar_analises_preliminares) // listar analises_preliminar
+    //.post("/analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.analises_preliminares) // listar analises_preliminar
+    //.post("/eliminar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.eliminar_analises_preliminares) // eliminar uma analises_preliminar
+    //.post("/editar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.editar_analises_preliminares) // editar uma analises_preliminar
+    //.post("/adicionar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.adicionar_analises_preliminares)  // adicionar uma analises_preliminar
+    
+
+/*
     .post("/technical-form/categorias/adicionarCat", controllers.categorias.adicionarCat)
     .put("/technical-form/categorias/updateCat/:CatId", controllers.categorias.updateCat)
     .post("/technical-form/condicoes_ambientais/adicionarCondAmb", controllers.condicoes_ambientais.adicionarCondAmb)
@@ -126,19 +143,19 @@ Server.prototype.routes = function () {
     .put("/technical-form/tabela_exames_analises/adicionarTabela", controllers.tabela_exames_analises.adicionarTabela)
     .post("/technical-form/tabela_exames_analises/updateTabela/:TabelaId", controllers.tabela_exames_analises.updateTabela)
     .put("/technical-form/vontade_intervencao_proprietario/adicionarVontade", controllers.vontade_intervencao_proprietario.adicionarVontade)
-    .post("/technical-form/vontade_intervencao_proprietario/updateVontade/:VontadeId", controllers.vontade_intervencao_proprietario.updateVontade);
+    .post("/technical-form/vontade_intervencao_proprietario/updateVontade/:VontadeId", controllers.vontade_intervencao_proprietario.updateVontade);*/
 };
 
 Server.prototype.permission = function (role) {
   return function (req, res, next) {
-    //console.log(req.headers.authorization)
-    
-    if (req.user == null || req.user == "") {
+    console.log(req.headers.authorization)
+
+   /* if (req.user.Role == null || req.user == "") {
       return res.status(401).json({
-          'Result': 401,
-          'Message': 'You are not logged in'
-        });
-    } else {
+        'Result': 401,
+        'Message': 'You are not logged in'
+      });
+    } else {*/
       var role_basedados = String(req.user.Role.nome);
       if (role.indexOf(role_basedados) > -1 || role_basedados === role) {
         next();
@@ -150,7 +167,6 @@ Server.prototype.permission = function (role) {
           'Your Role': role_basedados
         });
       }
-    }
 
   };
 };

@@ -1,24 +1,55 @@
-var db = require('../models/db')
+var db = require('../../models/db')
 
-exports.adicionarPropostas = (req, res) => {
-    db.propostas.create({
-        Aceitação_Proposta: req.body.Aceitação_Proposta,
-        Justificacao_Recusa: req.body.Justificacao_Recusa,
-        Descricao: req.body.Descricao,
-        Data_Elaboracao_Proposta: req.body.Data_Elaboracao_Proposta,
-        Data_Envio_Proposta: req.body.Data_Envio_Proposta
+
+
+exports.listarPropostas = (req, res) => {
+    db.Propostas.findAll().then(
+        Propostas => res.status(200).json({
+            "Propostas": Propostas
+        }),
+        error => res = status(500).send(error.message)
+    )
+    console.log("Lista proposta enviada")
+}
+
+exports.Proposta = (req, res) => {
+    db.Propostas.find({ where: { id: req.query.id } }).then(
+        Propostas => res.status(200).json({
+            "Propostas": Propostas
+        }),
+        error => res = status(500).send(error.message)
+    )
+    console.log("detalhes da proposta " + req.query.id)
+};
+
+exports.EliminarProposta = (req, res, next) => {
+
+    db.Propostas.destroy({
+        where: { id: req.query.id },
+    })
+    console.log("Proposta apagada " + req.query.id)
+}
+
+
+exports.adicionarProposta = (req, res) => {
+    db.Propostas.create({
+        Aceitação_Proposta: req.query.Aceitação_Proposta,
+        Justificacao_Recusa: req.query.Justificacao_Recusa,
+        Descricao: req.query.Descricao,
+        Data_Elaboracao_Proposta: req.query.Data_Elaboracao_Proposta,
+        Data_Envio_Proposta: req.query.Data_Envio_Proposta
     });
 }
 
-exports.updatePropostas = (req, res, next) => {
-    db.propostas.update({
-        Aceitação_Proposta: req.body.Aceitação_Proposta,
-        Justificacao_Recusa: req.body.Justificacao_Recusa,
-        Descricao: req.body.Descricao,
-        Data_Elaboracao_Proposta: req.body.Data_Elaboracao_Proposta,
-        Data_Envio_Proposta: req.body.Data_Envio_Proposta
+exports.editarProposta = (req, res, next) => {
+    db.Propostas.update({
+        Aceitação_Proposta: req.query.Aceitação_Proposta,
+        Justificacao_Recusa: req.query.Justificacao_Recusa,
+        Descricao: req.query.Descricao,
+        Data_Elaboracao_Proposta: req.query.Data_Elaboracao_Proposta,
+        Data_Envio_Proposta: req.query.Data_Envio_Proposta
     }, {
-        where: req.params.PropostasId
+        where: {id : req.query.id}
     }).then(
         (rowsUpdated) => {
             res.json(rowsUpdated)

@@ -1,8 +1,13 @@
 module.exports={
     "user":require("./user"),
-    "client":require("./client"),
-    "designacao_objetos": require("./designacao_objetos"),
-    "role": require("./role")
+    "role": require("./role"),
+
+    "client":require("./gestao-oportunidades/client"),        
+    "pedidos_clientes": require("./gestao-oportunidades/pedidos_clientes"),
+    "eventos": require("./gestao-oportunidades/eventos"),
+    "propostas": require("./gestao-oportunidades/propostas"),
+    "analises_preliminares": require("./gestao-oportunidades/analises_preliminares"),
+    "designacao_objeto": require("./technical-form/designacao_objecto")
     /*"categorias": require("./technical-form/categorias"),
     "sub_categorias": require("./technical-form/sub_categorias"),
     "pessoa": require("./technical-form/pessoa"),
