@@ -2,21 +2,20 @@
 module.exports = function(sequelize, DataTypes) {
   var objetivoE = sequelize.define('objecto_equipa', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,      
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     ID_Membro: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
+      
       references: {
         model: 'membro_equipa',
-        key: 'id_membro'
+        key: 'id'
       }
     }
   }, {

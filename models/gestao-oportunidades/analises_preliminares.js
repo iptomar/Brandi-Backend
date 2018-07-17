@@ -39,10 +39,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             references: {
-                model: '../technical-form/designacao_objecto',
+                model: 'designacao_objecto',
                 key: 'id'
             }
-        }
+    }
     });
     analises.associate = (models) => {
     }

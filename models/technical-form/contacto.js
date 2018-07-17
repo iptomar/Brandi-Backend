@@ -1,19 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var contacto = sequelize.define('contacto', {
-    ID_Contacto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
     ID_Pessoa: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,      
       references: {
         model: 'pessoa',
-        key: 'id_pessoa'
+        key: 'id'
       }
     },
     Contacto_Telefone: {

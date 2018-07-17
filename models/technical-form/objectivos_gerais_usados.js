@@ -1,22 +1,21 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
+  
   var objetivoG = sequelize.define('objectivos_gerais_usados', {
     ID_Objectivo: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,      
       references: {
         model: 'objectivos_gerais',
-        key: 'ID_Objectivo'
+        key: 'id'
       }
     },
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false, 
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     }
   }, {

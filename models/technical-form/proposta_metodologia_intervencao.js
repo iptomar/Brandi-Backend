@@ -2,12 +2,12 @@
 module.exports = function(sequelize, DataTypes) {
   var propostaM = sequelize.define('proposta_metodologia_intervencao', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
+      
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     Estrutura: {

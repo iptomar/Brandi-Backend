@@ -2,13 +2,11 @@
 module.exports = function(sequelize, DataTypes) {
   var detalhes = sequelize.define('detalhes_estado_conservacao', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     Estado_Conservacao: {

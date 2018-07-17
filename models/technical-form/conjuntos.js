@@ -2,12 +2,10 @@
 module.exports = function(sequelize, DataTypes) {
   var conjuntos = sequelize.define('conjuntos', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,      
       references: {
-        model: 'designacao_objetos',
+        model: 'designacao_objecto',
         key: 'id'
       }
     },

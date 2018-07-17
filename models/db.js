@@ -56,21 +56,21 @@ const sequelize = new Sequelize(process.env.DB || "db6", process.env.DBUSER || "
 const db = {
     "User": require("./user")(sequelize, Sequelize),
     "Role": require("./role")(sequelize, Sequelize),
-    
+
     // ordem para criar as tabelas
     "clientes": require("./gestao-oportunidades/cliente")(sequelize, Sequelize),
-    "designacao_objecto": require("./technical-form/designacao_objecto")(sequelize, Sequelize),        
-    "analises_preliminares": require("./gestao-oportunidades/analises_preliminares")(sequelize, Sequelize),   
+    "designacao_objecto": require("./technical-form/designacao_objecto")(sequelize, Sequelize),
     "eventos": require("./gestao-oportunidades/eventos")(sequelize, Sequelize),
     "pedidos_clientes": require("./gestao-oportunidades/pedidos_clientes")(sequelize, Sequelize),
-    "propostas": require("./gestao-oportunidades/propostas")(sequelize, Sequelize)
+    "propostas": require("./gestao-oportunidades/propostas")(sequelize, Sequelize),
+    "analises_preliminares": require("./gestao-oportunidades/analises_preliminares")(sequelize, Sequelize),
 
-    /*"sub_categorias": require("./technical-form/sub_categorias")(sequelize, Sequelize),
-    "pessoa": require("./technical-form/pessoa")(sequelize, Sequelize),
-    "designacao_objecto": require("./technical-form/designacao_objecto")(sequelize, Sequelize),
+    "categorias": require("./technical-form/categorias")(sequelize, Sequelize),
+    "sub_categorias": require("./technical-form/sub_categorias")(sequelize, Sequelize),
+    "condicoes_poluicao": require("./technical-form/condicoes_poluicao")(sequelize, Sequelize),
     "condicoes_ambientais": require("./technical-form/condicoes_ambientais")(sequelize, Sequelize),
     "condicoes_iluminacao": require("./technical-form/condicoes_iluminacao")(sequelize, Sequelize),
-    "condicoes_poluicao": require("./technical-form/condicoes_poluicao")(sequelize, Sequelize),
+    "pessoa": require("./technical-form/pessoa")(sequelize, Sequelize),
     "conjuntos": require("./technical-form/conjuntos")(sequelize, Sequelize),
     "contacto": require("./technical-form/contacto")(sequelize, Sequelize),
     "descricao_biologica": require("./technical-form/descricao_biologica")(sequelize, Sequelize),
@@ -91,7 +91,7 @@ const db = {
     "objecto_equipa": require("./technical-form/objecto_equipa")(sequelize, Sequelize),
     "proposta_metodologia_intervencao": require("./technical-form/proposta_metodologia_intervencao")(sequelize, Sequelize),
     "tabela_exames_analises": require("./technical-form/tabela_exames_analises")(sequelize, Sequelize),
-    "vontade_intervencao_proprietario": require("./technical-form/vontade_intervencao_proprietario")(sequelize, Sequelize)*/
+    "vontade_intervencao_proprietario": require("./technical-form/vontade_intervencao_proprietario")(sequelize, Sequelize)
 };
 
 Object.keys(db).forEach(modelName => {

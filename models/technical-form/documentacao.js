@@ -1,19 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var documentacao = sequelize.define('documentacao', {
-    ID_Documentacao: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     Tipo_Documentacao: {

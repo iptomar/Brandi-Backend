@@ -2,13 +2,11 @@
 module.exports = function(sequelize, DataTypes) {
   var condicoes = sequelize.define('condicoes_ambientais', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,      
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     Descricao: {

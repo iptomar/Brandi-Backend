@@ -1,19 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var fotos = sequelize.define('fotos', {
-    ID_Foto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
+  var fotos = sequelize.define('fotos', {   
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
+      type: DataTypes.INTEGER(11),
+      allowNull: false,      
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     Foto_URL: {

@@ -1,13 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var condicoesp = sequelize.define('condicoes_poluicao', {
+    
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
       references: {
-        model: 'designacao_objetos',
+        model: 'designacao_objecto',
         key: 'id'
       }
     },

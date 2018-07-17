@@ -2,12 +2,10 @@
 module.exports = function(sequelize, DataTypes) {
   var descricaob = sequelize.define('descricao_biologica', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
       references: {
-        model: 'designacao_objetos',
+        model: 'designacao_objecto',
         key: 'id'
       }
     },

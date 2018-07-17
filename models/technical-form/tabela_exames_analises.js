@@ -2,13 +2,11 @@
 module.exports = function(sequelize, DataTypes) {
   var tabelaE = sequelize.define('tabela_exames_analises', {
     ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
       references: {
         model: 'designacao_objecto',
-        key: 'ID_Objecto'
+        key: 'id'
       }
     },
     ID_Entrada_Tabela: {
