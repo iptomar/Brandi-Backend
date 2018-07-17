@@ -1,20 +1,32 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('eventos', {
+
+    var eventos = sequelize.define('eventos', {
         Descricao: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         Data_Evento: {
             type: DataTypes.DATEONLY,
-            allowNull: false
+            allowNull: true
         },
         Tipo: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
+        },
+        ID_Pedido: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false,
+            references: {
+                model: 'pedidos_clientes',
+                key: 'id'
+            }
         }
-    }, {
-            tableName: 'eventos'
-        });
+    }
+
+    );
+    eventos.associate = (models) => {
+    }
+    return eventos;
 };

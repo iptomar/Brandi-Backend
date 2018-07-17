@@ -1,40 +1,50 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('analises_preliminares', {
+
+    var analises = sequelize.define('analises_preliminares', {
         Descricao_Analise: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         Data_Realizacao_Analise: {
             type: DataTypes.DATEONLY,
-            allowNull: false
+            allowNull: true
         },
         Locao_realizacao_Analise: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         Inicio_Analise: {
             type: DataTypes.TIME,
-            allowNull: false
+            allowNull: true
         },
         Fim_Analise: {
             type: DataTypes.TIME,
-            allowNull: false
+            allowNull: true
         },
         Tipo: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         Distancia_Deslocacao: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         Outras_Despesas: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
+        }, 
+        ID_Objecto: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false,
+            references: {
+                model: '../technical-form/designacao_objecto',
+                key: 'id'
+            }
         }
-    }, {
-            tableName: 'analises_preliminares'
-        });
+    });
+    analises.associate = (models) => {
+    }
+    return analises;
 };

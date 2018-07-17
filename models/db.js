@@ -37,7 +37,7 @@ const operatorsAliases = {
     $col: Sequelize.Op.col
 };
 
-const sequelize = new Sequelize(process.env.DB || "db6", process.env.DBUSER || "root", process.env.DBPASSWORD || "", {
+const sequelize = new Sequelize(process.env.DB || "db6", process.env.DBUSER || "leitor", process.env.DBPASSWORD || "123qwe#", {
     host: "localhost",
     dialect: "mysql",
     operatorsAliases: operatorsAliases,
@@ -56,11 +56,16 @@ const sequelize = new Sequelize(process.env.DB || "db6", process.env.DBUSER || "
 const db = {
     "User": require("./user")(sequelize, Sequelize),
     "Role": require("./role")(sequelize, Sequelize),
-    "Clientes": require("./client")(sequelize, Sequelize),
-    "Role": require("./role")(sequelize, Sequelize),
-    "designacao_objetos": require("./designacao_objetos")(sequelize, Sequelize),
-    /*"categorias": require("./technical-form/categorias")(sequelize, Sequelize),
-    "sub_categorias": require("./technical-form/sub_categorias")(sequelize, Sequelize),
+    
+    // ordem para criar as tabelas
+    "clientes": require("./gestao-oportunidades/cliente")(sequelize, Sequelize),
+    "designacao_objecto": require("./technical-form/designacao_objecto")(sequelize, Sequelize),        
+    "analises_preliminares": require("./gestao-oportunidades/analises_preliminares")(sequelize, Sequelize),   
+    "eventos": require("./gestao-oportunidades/eventos")(sequelize, Sequelize),
+    "pedidos_clientes": require("./gestao-oportunidades/pedidos_clientes")(sequelize, Sequelize),
+    "propostas": require("./gestao-oportunidades/propostas")(sequelize, Sequelize)
+
+    /*"sub_categorias": require("./technical-form/sub_categorias")(sequelize, Sequelize),
     "pessoa": require("./technical-form/pessoa")(sequelize, Sequelize),
     "designacao_objecto": require("./technical-form/designacao_objecto")(sequelize, Sequelize),
     "condicoes_ambientais": require("./technical-form/condicoes_ambientais")(sequelize, Sequelize),

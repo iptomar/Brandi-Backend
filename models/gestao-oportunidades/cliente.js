@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     var Clientes = sequelize.define('Clientes', {
         email: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             unique: true
         },
         nome: {
@@ -25,8 +25,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     });
-    Clientes.associate = (models) => {
-        // models.Clientes.belongsTo(models.Role)
+    Clientes.associate = (models) => {        
     }
     return Clientes;
 }

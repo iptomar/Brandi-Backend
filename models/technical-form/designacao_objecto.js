@@ -1,12 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var designacaoO = sequelize.define('designacao_objecto', {
-    ID_Objecto: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
+  var designacaoO = sequelize.define('designacao_objecto', {   
     Designacao: {
       type: DataTypes.STRING(100),
       allowNull: false
@@ -35,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
-    ID_Sub_Categoria: {
+    /*ID_Sub_Categoria: {
       type: DataTypes.INTEGER(10).UNSIGNED,
       allowNull: false,
       references: {
@@ -78,7 +72,7 @@ module.exports = function(sequelize, DataTypes) {
         model: 'pessoa',
         key: 'ID_Pessoa'
       }
-    }
+  }*/
   }, {
     tableName: 'designacao_objecto'
     });

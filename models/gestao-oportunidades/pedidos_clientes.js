@@ -1,37 +1,35 @@
-/* jshint indent: 2 */
+'use strict';
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('pedidos_clientes', {
-        ID_Pedido: {
-            type: DataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-            primaryKey: true
-        },
+    var pedidos_clientes = sequelize.define('pedidos_clientes', {
         Titulo: {
             type: DataTypes.STRING(100),
-            allowNull: false
+            allowNull: true
         },
         Fotografia: {
             type: DataTypes.STRING(50),
-            allowNull: false
+            allowNull: true
         },
         Data_Realizacao_Pedido: {
             type: DataTypes.DATEONLY,
-            allowNull: false
+            allowNull: true
         },
         Descricao: {
             type: DataTypes.STRING(255),
-            allowNull: false
+            allowNull: true
         },
         ID_Cliente: {
-            type: DataTypes.INTEGER(10).UNSIGNED,
+            type: DataTypes.INTEGER(11),
             allowNull: false,
             references: {
                 model: 'clientes',
-                key: 'id_cliente'
+                key: 'id'
             }
         }
     }, {
             tableName: 'pedidos_clientes'
         });
+    pedidos_clientes.associate = (models) => {
+    }
+    return pedidos_clientes;
 };
