@@ -3,19 +3,20 @@ var db = require('../../models/db')
 
 
 exports.listarPropostas = (req, res) => {
-    db.Propostas.findAll().then(
-        Propostas => res.status(200).json({
-            "Propostas": Propostas
+    db.propostas.findAll().then(
+        propostas => res.status(200).json({
+            "propostas": propostas
         }),
         error => res = status(500).send(error.message)
-    )
+    )    
     console.log("Lista proposta enviada")
+
 }
 
 exports.Proposta = (req, res) => {
-    db.Propostas.find({ where: { id: req.query.id } }).then(
-        Propostas => res.status(200).json({
-            "Propostas": Propostas
+    db.propostas.find({ where: { id: req.query.id } }).then(
+        propostas => res.status(200).json({
+            "Propostas": propostas
         }),
         error => res = status(500).send(error.message)
     )

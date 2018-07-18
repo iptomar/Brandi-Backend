@@ -1,5 +1,18 @@
 var db = require('../../models/db')
 
+
+exports.listarobjetos = (req, res) => {
+    db.designacao_objecto.findAll().then(
+        designacao_objecto => res.status(200).json({
+            "objetos": designacao_objecto
+        }),
+        error => res = status(500).send(error.message)
+    )    
+    console.log("Lista objetos enviada")
+
+}
+
+/*
 exports.adicionarDesObj = (req, res) => {
     db.designacao_objecto.create({
         Designacao: req.body.Designacao,
@@ -34,4 +47,4 @@ exports.updateDesObj = (req, res, next) => {
             res.json(rowsUpdated)
         }
     ).catch(next)
-}
+}*/

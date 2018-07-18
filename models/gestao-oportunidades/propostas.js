@@ -3,7 +3,7 @@
 module.exports = function (sequelize, DataTypes) {
     var propostas = sequelize.define('propostas', {
         Aceitação_Proposta: {
-            type: DataTypes.INTEGER(1),
+            type: DataTypes.STRING(10),
             allowNull: true
         },
         Justificacao_Recusa: {

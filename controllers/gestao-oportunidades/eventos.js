@@ -2,7 +2,7 @@ var db = require('../../models/db')
 
 
 exports.evento = (req, res) => {
-    db.Eventos.find({ where: { id: req.query.id } }).then(
+    db.eventos.find({ where: { id: req.query.id } }).then(
         evento => res.status(200).json({
             "evento": evento
         }),
@@ -13,14 +13,14 @@ exports.evento = (req, res) => {
 
 exports.eliminarevento = (req, res, next) => {
 
-    db.Eventos.destroy({
+    db.eventos.destroy({
         where: { id: req.query.id }        
     })
     console.log("evento apagado")
 }
 
 exports.listareventos = (req, res) => {
-    db.Eventos.findAll().then(
+    db.eventos.findAll().then(
         Eventos => res.status(200).json({
             "eventos": Eventos
         }),
@@ -30,7 +30,7 @@ exports.listareventos = (req, res) => {
 };
 
 exports.adicionarevento = (req, res) => {
-    db.Eventos.create({
+    db.eventos.create({
         Descricao: req.query.descricao,
         Data_Evento: Date.now(),
         Tipo: req.query.tipo
@@ -38,7 +38,7 @@ exports.adicionarevento = (req, res) => {
 }
 
 exports.editarevento = (req, res, next) => {
-    db.Eventos.update({
+    db.eventos.update({
         Descricao: req.query.descricao,
         Data_Evento: Date.now(),
         Tipo: req.query.tipo

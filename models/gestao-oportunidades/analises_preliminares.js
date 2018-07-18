@@ -16,11 +16,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true
         },
         Inicio_Analise: {
-            type: DataTypes.TIME,
+            type: DataTypes.DATEONLY,
             allowNull: true
         },
         Fim_Analise: {
-            type: DataTypes.TIME,
+            type: DataTypes.DATEONLY,
             allowNull: true
         },
         Tipo: {

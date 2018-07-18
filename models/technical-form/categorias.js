@@ -1,12 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var categorias = sequelize.define('categorias', {
-    ID_Categoria: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
+  var categorias = sequelize.define('categorias', {  
     Super_Categoria: {
       type: DataTypes.STRING(50),
       allowNull: false,

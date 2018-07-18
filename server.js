@@ -86,6 +86,9 @@ Server.prototype.routes = function () {
     //.post("/editar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.editar_analises_preliminares) // editar uma analises_preliminar
     //.post("/adicionar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.adicionar_analises_preliminares)  // adicionar uma analises_preliminar
     
+    .post("/listarPropostas", this.permission("Gestor"), controllers.propostas.listarPropostas) // listar propostas
+
+    .post("/listarobjetos", this.permission("Gestor"), controllers.designacao_objeto.listarobjetos) 
 
 /*
     .post("/technical-form/categorias/adicionarCat", controllers.categorias.adicionarCat)

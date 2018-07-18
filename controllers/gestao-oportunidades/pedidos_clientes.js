@@ -1,35 +1,35 @@
 var db = require('../../models/db')
 
 exports.listarPedidos = (req, res) => {
-    db.Pedidos.findAll().then(
-        Pedidos => res.status(200).json({
-            "Pedidos": Pedidos
+    db.pedidos_clientes.findAll().then(
+        pedidos_clientes => res.status(200).json({
+            "pedidos_clientes": pedidos_clientes
         }),
         error => res = status(500).send(error.message)
-    )
+    )    
     console.log("Lista Pedidos enviada")
 }
 
 exports.pedido = (req, res) => {
-    db.Pedidos.find({ where: { id: req.query.id } }).then(
-        Pedidos => res.status(200).json({
-            "Pedido": Pedidos
+    db.pedidos_clientes.find({ where: { id: req.query.id } }).then(
+        pedidos_clientes => res.status(200).json({
+            "pedidos_clientes": pedidos_clientes
         }),
         error => res = status(500).send(error.message)
     )
-    console.log("detalhes do cliente " + req.query.id)
+    console.log("detalhes do pedido " + req.query.id)
 };
 
 exports.EliminarPedido = (req, res, next) => {
 
-    db.Pedidos.destroy({
+    db.pedidos_clientes.destroy({
         where: { id: req.query.id },
     })
     console.log("Pedido apagado " + req.query.id)
 }
 
 exports.adicionarpedido = (req, res) => {
-    db.Pedidos.create({
+    db.pedidos_clientes.create({
         Titulo: req.query.Titulo,
         Fotografia: req.query.Fotografia,
         Data_Realizacao_Pedido: new Date(),
@@ -40,7 +40,7 @@ exports.adicionarpedido = (req, res) => {
 }
 
 exports.editarpedido = (req, res, next) => {
-    db.Pedidos.update({
+    db.pedidos_clientes.update({
         Titulo: req.query.Titulo,
         Fotografia: req.query.Fotografia,
         Data_Realizacao_Pedido: req.query.Data_Realizacao_Pedido,

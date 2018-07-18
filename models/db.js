@@ -59,18 +59,18 @@ const db = {
 
     // ordem para criar as tabelas
     "clientes": require("./gestao-oportunidades/cliente")(sequelize, Sequelize),
+    "pessoa": require("./technical-form/pessoa")(sequelize, Sequelize),
+    "categorias": require("./technical-form/categorias")(sequelize, Sequelize),
+    "sub_categorias": require("./technical-form/sub_categorias")(sequelize, Sequelize),
     "designacao_objecto": require("./technical-form/designacao_objecto")(sequelize, Sequelize),
     "eventos": require("./gestao-oportunidades/eventos")(sequelize, Sequelize),
     "pedidos_clientes": require("./gestao-oportunidades/pedidos_clientes")(sequelize, Sequelize),
     "propostas": require("./gestao-oportunidades/propostas")(sequelize, Sequelize),
     "analises_preliminares": require("./gestao-oportunidades/analises_preliminares")(sequelize, Sequelize),
-
-    "categorias": require("./technical-form/categorias")(sequelize, Sequelize),
-    "sub_categorias": require("./technical-form/sub_categorias")(sequelize, Sequelize),
+   
     "condicoes_poluicao": require("./technical-form/condicoes_poluicao")(sequelize, Sequelize),
     "condicoes_ambientais": require("./technical-form/condicoes_ambientais")(sequelize, Sequelize),
-    "condicoes_iluminacao": require("./technical-form/condicoes_iluminacao")(sequelize, Sequelize),
-    "pessoa": require("./technical-form/pessoa")(sequelize, Sequelize),
+    "condicoes_iluminacao": require("./technical-form/condicoes_iluminacao")(sequelize, Sequelize),   
     "conjuntos": require("./technical-form/conjuntos")(sequelize, Sequelize),
     "contacto": require("./technical-form/contacto")(sequelize, Sequelize),
     "descricao_biologica": require("./technical-form/descricao_biologica")(sequelize, Sequelize),

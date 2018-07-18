@@ -29,14 +29,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
-    /*ID_Sub_Categoria: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
+    
+    ID_Sub_Categoria: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
       references: {
         model: 'sub_categorias',
-        key: 'ID_Sub_Categoria'
+        key: 'id'
       }
-    },
+  },
     Tipologia: {
       type: DataTypes.STRING(50),
       allowNull: true
@@ -50,29 +51,37 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     ID_Dono_Obra: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
       references: {
         model: 'pessoa',
-        key: 'ID_Pessoa'
+        key: 'id'
       }
     },
     ID_Proprietario: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
-        model: 'pessoa',
-        key: 'ID_Pessoa'
+        model: 'clientes',
+        key: 'id'
       }
     },
+      ID_Pedido: {
+        type: DataTypes.INTEGER(11),
+        allowNull: true,
+        references: {
+          model: 'pedidos_clientes',
+          key: 'id'    
+        }          
+    },
     ID_Mecenas: {
-      type: DataTypes.INTEGER(10).UNSIGNED,
-      allowNull: false,
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
       references: {
         model: 'pessoa',
-        key: 'ID_Pessoa'
-      }
-  }*/
+        key: 'id'
+      },
+    }
   }, {
     tableName: 'designacao_objecto'
     });
