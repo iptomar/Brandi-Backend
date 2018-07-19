@@ -80,15 +80,21 @@ Server.prototype.routes = function () {
     .post("/editarevento", this.permission("Gestor"), controllers.eventos.editarevento) // editar um evento
     .post("/adicionarevento", this.permission("Gestor"), controllers.eventos.adicionarevento)  // adicionar evento
 
-    .post("/listar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.listar_analises_preliminares) // listar analises_preliminar
-    //.post("/analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.analises_preliminares) // listar analises_preliminar
-    //.post("/eliminar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.eliminar_analises_preliminares) // eliminar uma analises_preliminar
-    //.post("/editar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.editar_analises_preliminares) // editar uma analises_preliminar
-    //.post("/adicionar_analises_preliminares", this.permission("Gestor"), controllers.analises_preliminares.adicionar_analises_preliminares)  // adicionar uma analises_preliminar
+    .post("/listaranalises", this.permission("Gestor"), controllers.analises_preliminares.listaranalises) // listar analises_preliminar
+    .post("/analise", this.permission("Gestor"), controllers.analises_preliminares.analise) // listar analises_preliminar
+    .post("/eliminaranalise", this.permission("Gestor"), controllers.analises_preliminares.EliminarAnalise) // eliminar uma analises_preliminar
+    .post("/editaranalise", this.permission("Gestor"), controllers.analises_preliminares.editarAnalise) // editar uma analises_preliminar
+    .post("/adicionaranalise", this.permission("Gestor"), controllers.analises_preliminares.adicionaranalise)  // adicionar uma analises_preliminar
     
+    .post("/proposta", this.permission("Gestor"), controllers.propostas.proposta) // listar proposta
     .post("/listarPropostas", this.permission("Gestor"), controllers.propostas.listarPropostas) // listar propostas
+    .post("/adicionarproposta", this.permission("Gestor"), controllers.propostas.adicionarProposta) // adicionar propostas
+    .post("/editarproposta", this.permission("Gestor"), controllers.propostas.editarProposta) // editar propostas
+    .post("/eliminarproposta", this.permission("Gestor"), controllers.propostas.EliminarProposta) // eliminar propostas
+
 
     .post("/listarobjetos", this.permission("Gestor"), controllers.designacao_objeto.listarobjetos) 
+    
 
 /*
     .post("/technical-form/categorias/adicionarCat", controllers.categorias.adicionarCat)

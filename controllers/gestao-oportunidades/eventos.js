@@ -14,7 +14,7 @@ exports.evento = (req, res) => {
 exports.eliminarevento = (req, res, next) => {
 
     db.eventos.destroy({
-        where: { id: req.query.id }        
+        where: { id: req.query.id }
     })
     console.log("evento apagado")
 }
@@ -33,7 +33,8 @@ exports.adicionarevento = (req, res) => {
     db.eventos.create({
         Descricao: req.query.descricao,
         Data_Evento: Date.now(),
-        Tipo: req.query.tipo
+        Tipo: req.query.tipo,
+        ID_Pedido: req.query.pedido
     });
 }
 
@@ -43,10 +44,10 @@ exports.editarevento = (req, res, next) => {
         Data_Evento: Date.now(),
         Tipo: req.query.tipo
     }, {
-        where: {id : req.query.id}
-    }).then(
-        (rowsUpdated) => {
-            res.json(rowsUpdated)
-        }
-    ).catch(next)
+            where: { id: req.query.id }
+        }).then(
+            (rowsUpdated) => {
+                res.json(rowsUpdated)
+            }
+        ).catch(next)
 }

@@ -1,51 +1,58 @@
 var db = require('../../models/db')
 
-exports.listar_analises_preliminares = (req, res) => {
+exports.listaranalises = (req, res) => {
     db.analises_preliminares.findAll().then(
         analises_preliminares => res.status(200).json({
             "analises_preliminares": analises_preliminares
         }),
         error => res = status(500).send(error.message)
     )
-    console.log("Lista analises_preliminares enviada")
+    console.log("Lista de analises enviada")
 }
 
-/*exports.Proposta = (req, res) => {
-    db.Propostas.find({ where: { id: req.query.id } }).then(
-        Propostas => res.status(200).json({
-            "Propostas": Propostas
+exports.analise = (req, res) => {
+    db.analises_preliminares.find({ where: { id: req.query.id } }).then(
+        analises_preliminares => res.status(200).json({
+            "analise": analises_preliminares
         }),
         error => res = status(500).send(error.message)
     )
-    console.log("detalhes da proposta " + req.query.id)
+    console.log("detalhes da analise " + req.query.id)
 };
 
-exports.EliminarProposta = (req, res, next) => {
+exports.EliminarAnalise = (req, res, next) => {
 
-    db.Propostas.destroy({
+    db.analises_preliminares.destroy({
         where: { id: req.query.id },
     })
-    console.log("Proposta apagada " + req.query.id)
+    console.log("Analise apagada " + req.query.id)
 }
 
 
-exports.adicionarProposta = (req, res) => {
-    db.Propostas.create({
-        Aceitação_Proposta: req.query.Aceitação_Proposta,
-        Justificacao_Recusa: req.query.Justificacao_Recusa,
-        Descricao: req.query.Descricao,
-        Data_Elaboracao_Proposta: req.query.Data_Elaboracao_Proposta,
-        Data_Envio_Proposta: req.query.Data_Envio_Proposta
+exports.adicionaranalise = (req, res) => {
+    console.log("Analise adicionada ")
+    db.analises_preliminares.create({        
+        Descricao_Analise: req.query.Descricao_Analise,
+        Data_Realizacao_Analise: new Date(),//req.query.Locao_realizacao_Analise,
+        Locao_realizacao_Analise: req.query.Locao_realizacao_Analise,
+        Inicio_Analise: req.query.Inicio_Analise,
+        Fim_Analise: req.query.Fim_Analise,
+        Distancia_Deslocacao: req.query.Distancia_Deslocacao,
+        Outras_Despesas: req.query.Outras_Despesas,
+        ID_Objecto: req.query.ID_Objecto
     });
 }
 
-exports.editarProposta = (req, res, next) => {
-    db.Propostas.update({
-        Aceitação_Proposta: req.query.Aceitação_Proposta,
-        Justificacao_Recusa: req.query.Justificacao_Recusa,
-        Descricao: req.query.Descricao,
-        Data_Elaboracao_Proposta: req.query.Data_Elaboracao_Proposta,
-        Data_Envio_Proposta: req.query.Data_Envio_Proposta
+exports.editarAnalise = (req, res, next) => {
+   
+    db.analises_preliminares.update({
+        Descricao_Analise: req.query.Descricao_Analise,
+        //Data_Realizacao_Analise: req.query.Data_Realizacao_Analise,
+        Locao_realizacao_Analise: req.query.Locao_realizacao_Analise,
+        //Inicio_Analise: req.query.Inicio_Analise,
+        //Fim_Analise: req.query.Fim_Analise,        
+        Distancia_Deslocacao: req.query.Distancia_Deslocacao,
+        Outras_Despesas: req.query.Outras_Despesas
     }, {
         where: {id : req.query.id}
     }).then(
@@ -53,39 +60,5 @@ exports.editarProposta = (req, res, next) => {
             res.json(rowsUpdated)
         }
     ).catch(next)
+    console.log("Analise editada "+ req.query.id)
 }
-
-
-
-
-exports.adicionarAnalPrem = (req, res) => {
-    db.analises_preliminares.create({
-        Descricao_Analise: req.body.Descricao_Analise,
-        Data_Realizacao_Analise: req.body.Data_Realizacao_Analise,
-        Locao_realizacao_Analise: req.body.Locao_realizacao_Analise,
-        Inicio_Analise: req.body.Inicio_Analise,
-        Fim_Analise: req.body.Fim_Analise,
-        Tipo: req.body.Tipo,
-        Distancia_Deslocacao: req.body.Distancia_Deslocacao,
-        Outras_Despesas: req.body.Outras_Despesas
-    });
-}
-
-exports.updateAnalPrem = (req, res, next) => {
-    db.analises_preliminares.update({
-        Descricao_Analise: req.body.Descricao_Analise,
-        Data_Realizacao_Analise: req.body.Data_Realizacao_Analise,
-        Locao_realizacao_Analise: req.body.Locao_realizacao_Analise,
-        Inicio_Analise: req.body.Inicio_Analise,
-        Fim_Analise: req.body.Fim_Analise,
-        Tipo: req.body.Tipo,
-        Distancia_Deslocacao: req.body.Distancia_Deslocacao,
-        Outras_Despesas: req.body.Outras_Despesas
-    }, {
-        where: req.params.AnalPremId
-    }).then(
-        (rowsUpdated) => {
-            res.json(rowsUpdated)
-        }
-    ).catch(next)
-}*/

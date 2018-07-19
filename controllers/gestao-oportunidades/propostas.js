@@ -8,15 +8,15 @@ exports.listarPropostas = (req, res) => {
             "propostas": propostas
         }),
         error => res = status(500).send(error.message)
-    )    
+    )
     console.log("Lista proposta enviada")
 
 }
 
-exports.Proposta = (req, res) => {
+exports.proposta = (req, res) => {
     db.propostas.find({ where: { id: req.query.id } }).then(
         propostas => res.status(200).json({
-            "Propostas": propostas
+            "proposta": propostas
         }),
         error => res = status(500).send(error.message)
     )
@@ -25,7 +25,7 @@ exports.Proposta = (req, res) => {
 
 exports.EliminarProposta = (req, res, next) => {
 
-    db.Propostas.destroy({
+    db.propostas.destroy({
         where: { id: req.query.id },
     })
     console.log("Proposta apagada " + req.query.id)
@@ -33,27 +33,33 @@ exports.EliminarProposta = (req, res, next) => {
 
 
 exports.adicionarProposta = (req, res) => {
-    db.Propostas.create({
+
+    db.propostas.create({
+
         Aceitação_Proposta: req.query.Aceitação_Proposta,
         Justificacao_Recusa: req.query.Justificacao_Recusa,
         Descricao: req.query.Descricao,
-        Data_Elaboracao_Proposta: req.query.Data_Elaboracao_Proposta,
-        Data_Envio_Proposta: req.query.Data_Envio_Proposta
+        Data_Elaboracao_Proposta: Date.now(),
+        Data_Envio_Proposta: Date.now(),
+        ID_Pedido: req.query.ID_Pedido,
+        ID_Coordenador: req.query.ID_Coordenador
+
     });
+    console.log("Proposta adicionada")
 }
 
 exports.editarProposta = (req, res, next) => {
-    db.Propostas.update({
+    console.log("Proposta editada" + req.query.id)
+    db.propostas.update({
         Aceitação_Proposta: req.query.Aceitação_Proposta,
         Justificacao_Recusa: req.query.Justificacao_Recusa,
-        Descricao: req.query.Descricao,
-        Data_Elaboracao_Proposta: req.query.Data_Elaboracao_Proposta,
-        Data_Envio_Proposta: req.query.Data_Envio_Proposta
+        Descricao: req.query.Descricao,        
+        Data_Envio_Proposta: Date.now()
     }, {
-        where: {id : req.query.id}
-    }).then(
-        (rowsUpdated) => {
-            res.json(rowsUpdated)
-        }
-    ).catch(next)
+            where: { id: req.query.id }
+        }).then(
+            (rowsUpdated) => {
+                res.json(rowsUpdated)
+            }
+        ).catch(next)
 }
