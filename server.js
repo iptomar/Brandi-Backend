@@ -92,10 +92,8 @@ Server.prototype.routes = function () {
     .post("/editarproposta", this.permission("Gestor"), controllers.propostas.editarProposta) // editar propostas
     .post("/eliminarproposta", this.permission("Gestor"), controllers.propostas.EliminarProposta) // eliminar propostas
 
-
-    .post("/listarobjetos", this.permission("Gestor"), controllers.designacao_objeto.listarobjetos) 
-    
-
+    .post("/listarobjetos", this.permission("Gestor"), controllers.designacao_objeto.listarobjetos) // listar objetos
+    .post("/guardarpagina1", this.permission("Gestor"), controllers.pagina1.adicionapagina1) // listar objetos
 /*
     .post("/technical-form/categorias/adicionarCat", controllers.categorias.adicionarCat)
     .put("/technical-form/categorias/updateCat/:CatId", controllers.categorias.updateCat)

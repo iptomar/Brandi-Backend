@@ -7,8 +7,10 @@ module.exports={
     "eventos": require("./gestao-oportunidades/eventos"),
     "propostas": require("./gestao-oportunidades/propostas"),
     "analises_preliminares": require("./gestao-oportunidades/analises_preliminares"),
-    "designacao_objeto": require("./technical-form/designacao_objecto")
-    /*"categorias": require("./technical-form/categorias"),
+    "designacao_objeto": require("./technical-form/designacao_objecto"),
+    
+    "pagina1": require("./technical-form/pagina1"),
+    "categorias": require("./technical-form/categorias"),
     "sub_categorias": require("./technical-form/sub_categorias"),
     "pessoa": require("./technical-form/pessoa"),
     "designacao_objecto": require("./technical-form/designacao_objecto"),
@@ -35,5 +37,5 @@ module.exports={
     "objecto_equipa": require("./technical-form/objecto_equipa"),
     "proposta_metodologia_intervencao": require("./technical-form/proposta_metodologia_intervencao"),
     "tabela_exames_analises": require("./technical-form/tabela_exames_analises"),
-    "vontade_intervencao_proprietario": require("./technical-form/vontade_intervencao_proprietario")*/
+    "vontade_intervencao_proprietario": require("./technical-form/vontade_intervencao_proprietario")
 }
